@@ -49,7 +49,14 @@ En vez de intercambiar esos valores vamos a terminar teniendo en ambas posicione
 Se te ocurre cómo solucionar esto con una variable temporal?
 */
 function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPos2) {
-    //COMPLETAR
+      
+  var temporal = grilla[filaPos1,columnaPos1];
+
+  grilla[filaPos1,columnaPos1] = grilla[filaPos2,columnaPos2];
+
+  grilla[filaPos2,columnaPos2] = temporal;
+  
+  //COMPLETAR
 }
 
 // Actualiza la posición de la pieza vacía
