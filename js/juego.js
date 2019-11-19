@@ -22,9 +22,8 @@ Para eso deberás usar la función ya implementada mostrarInstruccionEnLista().
 Podés ver su implementación en la ultima parte de este codigo. */
 function mostrarInstrucciones(instrucciones) {
   for (i=0; i < instrucciones.length; i++) {
-    mostrarInstruccionEnLista(instruccion[i], 'lista-instrucciones');
+    mostrarInstruccionEnLista(instrucciones[i], 'lista-instrucciones');
   }
-  //COMPLETAR
 }
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
@@ -114,6 +113,10 @@ function moverEnDireccion(direccion) {
     }
 }
 
+function registroMovimientos (direccion){
+  movimientos.push(direccion);
+  actualizarUltimoMovimiento(direccion);
+}
 
 //////////////////////////////////////////////////////////
 ////////A CONTINUACIÓN FUNCIONES YA IMPLEMENTADAS.////////
