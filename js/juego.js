@@ -24,7 +24,7 @@ function mostrarInstrucciones(instrucciones) {
   for (i=0; i < instrucciones.length; i++) {
     mostrarInstruccionEnLista(instruccion[i], 'lista-instrucciones');
   }
-  //COMPLETAR A
+  //COMPLETAR
 }
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
@@ -58,7 +58,7 @@ function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPo
   grilla[filaPos1,columnaPos1] = grilla[filaPos2,columnaPos2];
 
   grilla[filaPos2,columnaPos2] = temporal;
-
+  
   //COMPLETAR
 }
 
@@ -190,8 +190,8 @@ function actualizarUltimoMovimiento(direccion) {
 /* Esta función permite agregar una instrucción a la lista
 con idLista. Se crea un elemento li dinámicamente con el texto 
 pasado con el parámetro "instrucción". */
-function mostrarInstruccionEnLista(instruccion, 'lista-instrucciones') {
-  var ul = document.getElementById('lista-instrucciones');
+function mostrarInstruccionEnLista(instruccion, idLista) {
+  var ul = document.getElementById(idLista);
   var li = document.createElement("li");
   li.textContent = instruccion;
   ul.appendChild(li);
@@ -254,5 +254,3 @@ function iniciar() {
 
 // Ejecutamos la función iniciar
 iniciar();
-
-//Hola
