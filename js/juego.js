@@ -1,5 +1,5 @@
 // Arreglo que contiene las intrucciones del juego 
-var instrucciones = [];
+var instrucciones = ['Utilizar las teclas de dirección para indicar el movimiento del espacio vacío al de una pieza perpendicular.', 'Realizar movimientos de modo que se arme correctamente la imagen de Pikachu.', '¡A menor cantidad de movimientos más puntos!' ];
 // Arreglo para ir guardando los movimientos que se vayan realizando
 var movimientos = [];
 
@@ -21,7 +21,10 @@ Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-ins
 Para eso deberás usar la función ya implementada mostrarInstruccionEnLista().
 Podés ver su implementación en la ultima parte de este codigo. */
 function mostrarInstrucciones(instrucciones) {
-    //COMPLETAR
+  for (i=0; i < instrucciones.length; i++) {
+    mostrarInstruccionEnLista(instruccion[i], 'lista-instrucciones');
+  }
+  //COMPLETAR
 }
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
@@ -55,7 +58,7 @@ function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPo
   grilla[filaPos1,columnaPos1] = grilla[filaPos2,columnaPos2];
 
   grilla[filaPos2,columnaPos2] = temporal;
-  
+
   //COMPLETAR
 }
 
@@ -187,8 +190,8 @@ function actualizarUltimoMovimiento(direccion) {
 /* Esta función permite agregar una instrucción a la lista
 con idLista. Se crea un elemento li dinámicamente con el texto 
 pasado con el parámetro "instrucción". */
-function mostrarInstruccionEnLista(instruccion, idLista) {
-  var ul = document.getElementById(idLista);
+function mostrarInstruccionEnLista(instruccion, 'lista-instrucciones') {
+  var ul = document.getElementById('lista-instrucciones');
   var li = document.createElement("li");
   li.textContent = instruccion;
   ul.appendChild(li);
