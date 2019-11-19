@@ -24,7 +24,7 @@ function mostrarInstrucciones(instrucciones) {
   for (i=0; i < instrucciones.length; i++) {
     mostrarInstruccionEnLista(instruccion[i], 'lista-instrucciones');
   }
-  //COMPLETAR
+  //COMPLETAR A
 }
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
