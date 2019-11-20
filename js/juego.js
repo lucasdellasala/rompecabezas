@@ -11,6 +11,12 @@ var grilla = [
     [7, 8, 9]
 ];
 
+let grillaGanadora = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+
 /* Estas dos variables son para guardar la posición de la pieza vacía. 
 Esta posición comienza siendo la [2, 2]*/
 var filaVacia = 2;
@@ -21,23 +27,33 @@ Cada elemento de este arreglo deberá ser mostrado en la lista con id 'lista-ins
 Para eso deberás usar la función ya implementada mostrarInstruccionEnLista().
 Podés ver su implementación en la ultima parte de este codigo. */
 function mostrarInstrucciones(instrucciones) {
-  for (i=0; i < instrucciones.length; i++) {
+  for (var i=0; i < instrucciones.length; i++) {
     mostrarInstruccionEnLista(instrucciones[i], 'lista-instrucciones');
   }
 }
 
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
 y utilice actualizarUltimoMovimiento para mostrarlo en pantalla */
-
+function registroMovimientos (direccion){
+  movimientos.push(direccion);
+  actualizarUltimoMovimiento(direccion);
+}
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora. 
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
 function chequearSiGano() {
-    //COMPLETAR
+    for (let fila=0; fila<grilla.length; fila++){
+      for (let col=0; col<grilla[fila].length; col++){
+        if (grilla[fila][col]!==grillaGanadora[fila][col]){
+          return false;
+        } 
+      }
+    } 
+    return true;
 }
 
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
 function mostrarCartelGanador() {
-    //COMPLETAR
+    alert('GANASTEE!!!')
 }
 
 /* Función que intercambia dos posiciones en la grilla.
@@ -63,13 +79,19 @@ function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPo
 
 // Actualiza la posición de la pieza vacía
 function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
-    //COMPLETAR
+  filaVacia = nuevaFila;
+  columnaVacia = nuevaColumna;
 }
 
 
 // Para chequear si la posicón está dentro de la grilla.
 function posicionValida(fila, columna) {
-    //COMPLETAR
+    if (fila>=0 && fila<grilla.length && 
+        columna>=0 && columna<grilla.length){
+      return true
+    } else {
+      return false
+    }
 }
 
 /* Movimiento de fichas, en este caso la que se mueve es la blanca intercambiando su posición con otro elemento.
@@ -92,12 +114,14 @@ function moverEnDireccion(direccion) {
     
   // Mueve pieza hacia la derecha, reemplazandola con la blanca
   else if (direccion === codigosDireccion.DERECHA) {
-    //COMPLETAR
+    nuevaFilaPiezaVacia = filaVacia ;
+    nuevaColumnaPiezaVacia = columnaVacia - 1;
   }
     
   // Mueve pieza hacia la izquierda, reemplazandola con la blanca
   else if (direccion === codigosDireccion.IZQUIERDA) {
-    // COMPLETAR
+    nuevaFilaPiezaVacia = filaVacia ;
+    nuevaColumnaPiezaVacia = columnaVacia + 1;
   }
 
   /* A continuación se chequea si la nueva posición es válida, si lo es, se intercambia. 
@@ -109,13 +133,9 @@ function moverEnDireccion(direccion) {
         actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
 
   //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
-
+        registroMovimientos (direccion);
     }
-}
-
-function registroMovimientos (direccion){
-  movimientos.push(direccion);
-  actualizarUltimoMovimiento(direccion);
+  
 }
 
 //////////////////////////////////////////////////////////
@@ -232,9 +252,9 @@ function capturarTeclas() {
       evento.which === codigosDireccion.ARRIBA ||
       evento.which === codigosDireccion.DERECHA ||
       evento.which === codigosDireccion.IZQUIERDA) {
-
+      
       moverEnDireccion(evento.which);
-
+      showGridInConsole();
         var gano = chequearSiGano();
         if (gano) {
           setTimeout(function() {
@@ -243,7 +263,8 @@ function capturarTeclas() {
             }
             evento.preventDefault();
         }
-    })
+    }
+    )
 }
 
 /* Se inicia el rompecabezas mezclando las piezas 60 veces 
@@ -257,3 +278,11 @@ function iniciar() {
 
 // Ejecutamos la función iniciar
 iniciar();
+
+
+function showGridInConsole(){     
+  for(let fila=0 ; fila<grilla.length ; fila++){         
+    console.log(grilla[fila]);         
+     
+  } console.log("\n");
+}
