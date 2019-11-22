@@ -11,7 +11,7 @@ var grilla = [
     [7, 8, 9]
 ];
 
-let grillaGanadora = [
+var grillaGanadora = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9]
@@ -41,8 +41,8 @@ function registroMovimientos (direccion){
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora. 
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
 function chequearSiGano() {
-    for (let fila=0; fila<grilla.length; fila++){
-      for (let col=0; col<grilla[fila].length; col++){
+    for (var fila=0; fila<grilla.length; fila++){
+      for (var col=0; col<grilla[fila].length; col++){
         if (grilla[fila][col]!==grillaGanadora[fila][col]){
           return false;
         } 
@@ -86,12 +86,17 @@ function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
 
 // Para chequear si la posicón está dentro de la grilla.
 function posicionValida(fila, columna) {
-    if (fila>=0 && fila<grilla.length && 
-        columna>=0 && columna<grilla.length){
-      return true
-    } else {
-      return false
-    }
+    // if (fila>=0 && fila<grilla.length && 
+    //     columna>=0 && columna<grilla.length){
+    //   return true
+    // } else {
+    //   return false
+    // }
+      if ((fila>2) || (columna>2) || (fila<0) || (columna<0) ){
+        return false
+      } else {
+        return true;
+      }
 }
 
 /* Movimiento de fichas, en este caso la que se mueve es la blanca intercambiando su posición con otro elemento.
@@ -254,7 +259,7 @@ function capturarTeclas() {
       evento.which === codigosDireccion.IZQUIERDA) {
       
       moverEnDireccion(evento.which);
-      showGridInConsole();
+
         var gano = chequearSiGano();
         if (gano) {
           setTimeout(function() {
@@ -280,9 +285,9 @@ function iniciar() {
 iniciar();
 
 
-function showGridInConsole(){     
-  for(let fila=0 ; fila<grilla.length ; fila++){         
-    console.log(grilla[fila]);         
+// function showGridInConsole(){     
+//   for(let fila=0 ; fila<grilla.length ; fila++){         
+//     console.log(grilla[fila]);         
      
-  } console.log("\n");
-}
+//   } console.log("\n");
+// }
